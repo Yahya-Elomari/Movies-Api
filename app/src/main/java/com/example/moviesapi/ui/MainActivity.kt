@@ -1,8 +1,11 @@
 package com.example.moviesapi.ui
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.moviesapi.R
 
 class MainActivity : AppCompatActivity() {
@@ -26,5 +29,4 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController,null)
     }
 
-    }
 }

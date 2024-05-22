@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.moviesapi.R
 import com.example.moviesapi.data.api.TheMovieDBClient
 import com.example.moviesapi.data.api.TheMovieDBInterface
 import com.example.moviesapi.data.repository.NetworkState
 import com.example.moviesapi.data.repository.Status
+import com.example.moviesapi.data.vo.MovieDetails
 import java.text.NumberFormat
 import java.util.Locale
+import com.example.moviesapi.util.ConnectivityInterceptor
+
 
 class SingleMovie : AppCompatActivity() {
     private lateinit var viewModel: SingleMovieViewModel
@@ -64,7 +68,7 @@ class SingleMovie : AppCompatActivity() {
 
     private fun getViewModel(movieId:Int): SingleMovieViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return SingleMovieViewModel(movieRepository,movieId) as T
             }

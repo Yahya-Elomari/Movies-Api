@@ -4,6 +4,14 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.example.moviesapi.util.ConnectivityInterceptor
+
+const val API_KEY = "e331ae30a57f3e63003ef83e5cf253cc"
+const val BASE_URL = "https://api.themoviedb.org/3/"
+const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
+const val FIRST_PAGE = 1
+const val POST_PER_PAGE = 20
 
 object TheMovieDBClient {
 
@@ -12,7 +20,7 @@ object TheMovieDBClient {
             // Interceptor take only one argument which is a lambda function so parenthesis can be omitted
 
             val url = chain.request()
-                .url()
+                .url
                 .newBuilder()
                 .addQueryParameter("api_key", API_KEY)
                 .build()

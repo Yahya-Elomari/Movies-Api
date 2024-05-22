@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.moviesapi.data.api.TheMovieDBInterface
+import com.example.moviesapi.data.vo.MovieDetails
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -32,7 +33,7 @@ class MovieDetailsNetworkDataSource (private val apiService : TheMovieDBInterfac
                         },
                         {
                             _networkState.postValue(NetworkState(Status.FAILED, "Something went wrong"))
-                            Log.e("MovieDetailsDataSource", it.message)
+                            Log.e("MovieDetailsDataSource", it.message.toString())
                         }
                     )
             )
@@ -40,7 +41,7 @@ class MovieDetailsNetworkDataSource (private val apiService : TheMovieDBInterfac
         }
 
         catch (e: Exception){
-            Log.e("MovieDetailsDataSource",e.message)
+            Log.e("MovieDetailsDataSource", e.message.toString())
         }
 
 

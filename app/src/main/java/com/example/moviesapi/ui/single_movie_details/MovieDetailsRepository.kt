@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.moviesapi.data.api.TheMovieDBInterface
 import com.example.moviesapi.data.repository.MovieDetailsNetworkDataSource
 import com.example.moviesapi.data.repository.NetworkState
+import com.example.moviesapi.data.vo.MovieDetails
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class MovieDetailsRepository  (private val apiService : TheMovieDBInterface) {
