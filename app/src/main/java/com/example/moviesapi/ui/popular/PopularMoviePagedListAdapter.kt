@@ -63,6 +63,7 @@ class PopularMoviePagedListAdapter (val context: Context) :
         }
     }
 
+
     class MovieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie: Movie?,context:Context) {
