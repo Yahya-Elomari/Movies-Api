@@ -1,32 +1,22 @@
-package com.oxcoding.movies.ui.popular
+package com.example.moviesapi
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviesapi.R
+import com.example.moviesapi.data.api.POSTER_BASE_URL
 import com.example.moviesapi.data.repository.NetworkState
 import com.example.moviesapi.data.repository.Status
 import com.example.moviesapi.data.vo.Movie
-import com.oxcoding.movies.R
-import com.oxcoding.movies.data.api.POSTER_BASE_URL
-import com.oxcoding.movies.data.vo.Movie
-import kotlinx.android.synthetic.main.movie_list_item.view.*
-import com.oxcoding.movies.data.repository.NetworkState
-import com.oxcoding.movies.data.repository.Status
-import com.oxcoding.movies.ui.SingleMovie.SingleMovie
-import com.oxcoding.movies.ui.SingleMovie.SingleMovieViewModel
-import kotlinx.android.synthetic.main.network_state_item.view.*
+import com.example.moviesapi.ui.single_movie_details.SingleMovie
 
 
-class PopularMoviePagedListAdapter (public val context: Context) :
+class PopularMoviePagedListAdapter (val context: Context) :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val DATA_VIEW_TYPE = 1
@@ -36,6 +26,7 @@ class PopularMoviePagedListAdapter (public val context: Context) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         val layoutInflater = LayoutInflater.from(parent.context)
         val view: View
         if (viewType == DATA_VIEW_TYPE) {
@@ -73,11 +64,13 @@ class PopularMoviePagedListAdapter (public val context: Context) :
     }
 
     class MovieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+
         fun bind(movie: Movie?,context:Context) {
+
             itemView.cv_movie_title.text = movie?.title
-//            if(movie?.releaseDate.toString().length > 4){
-//                itemView.cv_movie_release_date.text =  movie?.releaseDate?.substring(0,4)
-//            }
+            if(movie?.releaseDate.toString().length > 4){
+                itemView.cv_movie_release_date.text =  movie?.releaseDate?.substring(0,4)
+            }
 
             itemView.cv_movie_release_date.text =  movie?.releaseDate
             val moviePosterURL = POSTER_BASE_URL + movie?.posterPath
